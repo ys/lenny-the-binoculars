@@ -20,6 +20,14 @@ class Lockfile
     end
   end
 
+  def insecure_sources_count
+    @insecure_sources.size
+  end
+
+  def unpatched_gems_count
+    @unpatched_gems.size
+  end
+
   def vulnerable?
     @insecure_sources.any? || @unpatched_gems.any?
   end

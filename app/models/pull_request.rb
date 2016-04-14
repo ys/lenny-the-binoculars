@@ -12,9 +12,10 @@ class PullRequest < ApplicationRecord
              raw_payload: payload)
   end
 
-  def create_status(state)
+  def create_status(state, description)
     github.create_status(repository, sha, state,
                          context: "lenny/vulnerabilities",
+                         description: description,
                          target_url: "#{ENV["APP_URL"]}/pull_requests/#{id}")
   end
 
