@@ -16,6 +16,8 @@ gem "sidekiq"
 gem "octokit"
 gem "lograge"
 
+gem "omniauth-github"
+
 group :development, :test do
   gem "byebug"
   gem "rspec-rails"

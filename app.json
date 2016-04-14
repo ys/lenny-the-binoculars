@@ -5,6 +5,18 @@
   "env": {
     "GITHUB_API_TOKEN": {
       "Description": "Access token to get gemfile.lock and push commit statuses"
+    },
+    "GITHUB_KEY": {
+      "Description": "Oauth key to protect acces"
+    },
+    "GITHUB_SECRET": {
+      "Description": "Oauth secret to protect acces"
+    },
+    "GITHUB_ORG": {
+      "Description": "Org name user needs to be on"
+    },
+    "APP_URL": {
+      "Description": "Base url for the app used for target_url in commit statuses"
     }
   }
 }

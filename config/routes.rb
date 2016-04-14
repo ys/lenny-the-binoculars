@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   #
   resources :webhooks, only: :create
   resources :pull_requests, only: :show
+  get "/auth/github/callback", to: "sessions#github"
 end
