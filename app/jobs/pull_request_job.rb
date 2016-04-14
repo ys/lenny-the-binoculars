@@ -12,13 +12,7 @@ class PullRequestJob < ActiveJob::Base
     pr.sha = payload["pull_request"]["head"]["sha"]
     pr.save
     lockfile = pr.check_lockfile!
-    state = lockfile.vulnerable? ? "failure" : "success"
-    description = if lockfile.vulnerable?
-      "#{lockfile.insecure_sources_count} insecure sources, #{lockfile.unpatched_gems_count} unpatched Gems"
-      else
-        "No vulnerabilities found"
-      end
-    pr.create_status(state, description)
+    pr.create_status(lockfile.state, lockfile.description)
   end
 
   def repositories

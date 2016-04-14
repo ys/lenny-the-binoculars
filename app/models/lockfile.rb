@@ -9,6 +9,18 @@ class Lockfile
     @unpatched_gems = []
   end
 
+  def state
+    vulnerable? ? "failure" : "success"
+  end
+
+  def description
+    if vulnerable?
+    "#{insecure_sources_count} insecure sources, #{unpatched_gems_count} unpatched Gems"
+    else
+      "No vulnerabilities found"
+    end
+  end
+
   def scan
     Bundler::Audit::Scanner.new(@root).scan do |result|
       case result
