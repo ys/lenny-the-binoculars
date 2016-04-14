@@ -3,4 +3,7 @@ Rails.application.routes.draw do
 
   # Serve websocket cable requests in-process
   # mount ActionCable.server => '/cable'
+  #
+  resources :webhooks, only: :create
+  resources :pull_requests, only: :show
 end

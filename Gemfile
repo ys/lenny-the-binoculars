@@ -12,10 +12,16 @@ gem "coffee-rails", "~> 4.1.0"
 gem "jquery-rails"
 
 gem "bundler-audit"
+gem "sidekiq"
+gem "octokit"
 
 group :development, :test do
   gem "byebug"
   gem "rspec-rails"
+end
+
+group :test do
+  gem "webmock"
 end
 
 group :development do

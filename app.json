@@ -1,7 +1,7 @@
 {
   "name": "Lenny the Binoculars",
   "description": "Will watch your Gemfiles for vulnerabilities",
-  "addons": ["heroku-postgresql"],
+  "addons": ["heroku-postgresql", "heroku-redis"],
   "env": {
     "GITHUB_API_TOKEN": {
       "Description": "Access token to get gemfile.lock and push commit statuses"
