@@ -1,6 +1,6 @@
 class PullRequestsController < ApplicationController
   def show
-    pr = PullRequests.find(params[:id])
-    render json: pr.to_json
+    @pr = PullRequests.find(params[:id])
+    @lockfile = @pr.check_lockfile!
   end
 end

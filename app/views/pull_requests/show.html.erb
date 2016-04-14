@@ -1,0 +1,39 @@
+<h1><%= @pr.repository %>#<%= @pr.number %></h1>
+<h2>Insecure Sources</h2>
+<% if @lockfile.insecure_sources.empty? %>
+  No insecure sources
+<% else %>
+  <ul>
+  <% @lockfile.insecure_sources.each do |insecure_source| %>
+    <li><%= insecure_source.source %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<h2>Unpatched Gems</h2>
+<% if @lockfile.unpatched_gems.empty? %>
+  No unpatched gems
+<% else %>
+  <ul>
+  <% @lockfile.unpatched_gems.each do |gem| %>
+    <li>
+    <%= gem.gem.name %>#<%= gem.gem.version %><br/>
+    Advisory:
+    <% if advisory.cve %>
+      <%= "CVE-#{advisory.cve}" %>
+    <% elsif advisory.osvdb %>
+      <%= advisory.osvdb %>
+    <% end %><br/><br/>
+    Criticality:
+    <%= gem.advisory.criticality %><br/>
+    Url:
+    <%= gem.advisory.url %><br/>
+    <% unless gem.advisory.patched_versions.empty? %>
+      Solution: upgrade to <%= gem.advisory.patched_versions.join(', ') %>
+    <% else %>
+      Solution: remove or disable this gem until a patch is available!
+    <% end %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
