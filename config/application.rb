@@ -18,6 +18,7 @@ Bundler.require(*Rails.groups)
 
 module LennyTheBinoculars
   class Application < Rails::Application
+    config.lograge.enabled = true
     config.active_job.queue_adapter = :sidekiq
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid

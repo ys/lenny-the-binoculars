@@ -14,6 +14,7 @@ gem "jquery-rails"
 gem "bundler-audit"
 gem "sidekiq"
 gem "octokit"
+gem "lograge"
 
 group :development, :test do
   gem "byebug"
