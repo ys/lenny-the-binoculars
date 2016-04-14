@@ -16,8 +16,10 @@
 <% else %>
   <ul>
   <% @lockfile.unpatched_gems.each do |gem| %>
+    <% gem = gem.gem %>
+    <% advisory = gem.advisory %>
     <li>
-    <%= gem.gem.name %>#<%= gem.gem.version %><br/>
+    <%= gem.name %>#<%= gem.version %><br/>
     Advisory:
     <% if advisory.cve %>
       <%= "CVE-#{advisory.cve}" %>
@@ -25,11 +27,11 @@
       <%= advisory.osvdb %>
     <% end %><br/><br/>
     Criticality:
-    <%= gem.advisory.criticality %><br/>
+    <%= advisory.criticality %><br/>
     Url:
-    <%= gem.advisory.url %><br/>
-    <% unless gem.advisory.patched_versions.empty? %>
-      Solution: upgrade to <%= gem.advisory.patched_versions.join(', ') %>
+    <%= advisory.url %><br/>
+    <% unless advisory.patched_versions.empty? %>
+      Solution: upgrade to <%= advisory.patched_versions.join(', ') %>
     <% else %>
       Solution: remove or disable this gem until a patch is available!
     <% end %>
