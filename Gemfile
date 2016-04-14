@@ -14,6 +14,7 @@ gem "jquery-rails"
 gem "bundler-audit"
 gem "sidekiq"
 gem "octokit"
+gem "rack-ssl", "1.2"
 
 group :development, :test do
   gem "byebug"
