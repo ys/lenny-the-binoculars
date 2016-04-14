@@ -19,6 +19,6 @@ class PullRequestJob < ActiveJob::Base
   end
 
   def repositories
-    JSON.parse(File.read(File.join(Rails.root, "config", "repositories.json")))
+    ENV["REPOSITORIES"].split(",")
   end
 end
