@@ -15,9 +15,9 @@
   No unpatched gems
 <% else %>
   <ul>
-  <% @lockfile.unpatched_gems.each do |gem| %>
-    <% gem = gem.gem %>
-    <% advisory = gem.advisory %>
+  <% @lockfile.unpatched_gems.each do |g| %>
+    <% gem = g.gem %>
+    <% advisory = g.advisory %>
     <li>
     <%= gem.name %>#<%= gem.version %><br/>
     Advisory:

@@ -21,6 +21,7 @@ class PullRequest < ApplicationRecord
 
   def check_lockfile!
     raise(StandardError, "No Gemfile.lock found") unless has_gemfile?
+    Bundler::Audit::Database.update!
     write_gemfile_in_local_folder
     lockfile = Lockfile.new(local_folder)
     lockfile.scan
