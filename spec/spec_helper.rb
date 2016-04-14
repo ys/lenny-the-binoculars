@@ -12,4 +12,9 @@ RSpec.configure do |config|
   def fixtures_path(path)
     File.join(Rails.root, "spec", "fixtures", path)
   end
+
+  def fixture_data(path)
+    path = File.extname(path).present? ? path : "#{path}.json"
+    File.read(fixtures_path(path))
+  end
 end
