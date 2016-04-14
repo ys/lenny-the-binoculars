@@ -15,7 +15,7 @@ class Lockfile
       when Bundler::Audit::Scanner::InsecureSource
         @insecure_sources << result
       when Bundler::Audit::Scanner::UnpatchedGem
-        @unpatched_gems << unpatched_gems
+        @unpatched_gems << result
       end
     end
   end
