@@ -6,6 +6,7 @@ class WebhooksController < ApplicationController
     case event_type
     when "pull_request"
       handle_pull_request
+      render :json => {}, :status => :accepted
     when "ping"
       render :json => {}, :status => :ok
     else
