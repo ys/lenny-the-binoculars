@@ -37,7 +37,7 @@ describe "Receiving GitHub hooks", :type => :request do
     describe "Pull Request events" do
       it "creates a pull request object on open event" do
         post "/webhooks", fixture_data("github/pull_request_open"), request_headers("pull_request")
-
+        stub_json_request(:get, %r{https://api.github.com/repos/ys/lenny-the-binoculars/contents/Gemfile.lock}, fixture_data("github/gemfile_lock"))
         expect(PullRequest.last).to_not be_nil
         expect(response).to be_successful
         expect(response.status).to eql(202)
