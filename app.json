@@ -1,11 +1,10 @@
 {
   "name": "Lenny the Binoculars",
-  "description": "TODO: Add a short description about Lenny the Binoculars",
-  "keywords": [
-    "small",
-    "sharp",
-    "tool"
-  ],
+  "description": "Will watch your Gemfiles for vulnerabilities",
   "addons": [],
-  "env": {}
+  "env": {
+    "GITHUB_API_TOKEN": {
+      "Description": "Access token to get gemfile.lock and push commit statuses"
+    }
+  }
 }
