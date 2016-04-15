@@ -1,8 +1,6 @@
-<h1><%= @pr.repository %>#<%= @pr.number %></h1>
-<h2>Insecure Sources</h2>
-<% if @lockfile.insecure_sources.empty? %>
-  No insecure sources
-<% else %>
+<h1 class="repo"><%= @pr.repository %><a href="https://github.com/<%= @pr.repository %>/pull/<%= @pr.number %>">#<%= @pr.number %></a></h1>
+<% if @lockfile.insecure_sources.any? %>
+  <h4>Insecure Sources</h4>
   <ul>
   <% @lockfile.insecure_sources.each do |insecure_source| %>
     <li><%= insecure_source.source %></li>
@@ -10,32 +8,51 @@
   </ul>
 <% end %>
 
-<h2>Unpatched Gems</h2>
+<h4>Unpatched Gems</h4>
 <% if @lockfile.unpatched_gems.empty? %>
   No unpatched gems
 <% else %>
-  <ul>
-  <% @lockfile.unpatched_gems.each do |g| %>
-    <% gem = g.gem %>
-    <% advisory = g.advisory %>
-    <li>
-    <%= gem.name %>#<%= gem.version %><br/>
-    Advisory:
-    <% if advisory.cve %>
-      <%= "CVE-#{advisory.cve}" %>
-    <% elsif advisory.osvdb %>
-      <%= advisory.osvdb %>
-    <% end %><br/><br/>
-    Criticality:
-    <%= advisory.criticality %><br/>
-    Url:
-    <%= advisory.url %><br/>
-    <% unless advisory.patched_versions.empty? %>
-      Solution: upgrade to <%= advisory.patched_versions.join(', ') %>
-    <% else %>
-      Solution: remove or disable this gem until a patch is available!
+  <div class="gems">
+    <% @lockfile.unpatched_gems.each do |g| %>
+      <% gem = g.gem %>
+      <% advisory = g.advisory %>
+      <div class="gem">
+        <header>
+          <h5><%= gem.name %>#<%= gem.version %></h5>
+        </header>
+        <div class="row">
+          <div class="def column column-10">Advisory</div>
+          <div class="column">
+            <% if advisory.cve %>
+              <%= "CVE-#{advisory.cve}" %>
+            <% elsif advisory.osvdb %>
+              <%= advisory.osvdb %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="def column column-10">Criticality</div>
+          <div class="column">
+            <%= advisory.criticality %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="def column column-10">Url</div>
+          <div class="column">
+            <%= advisory.url %><br/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="def column column-10">Solution</div>
+          <div class="column">
+              <% unless advisory.patched_versions.empty? %>
+            Upgrade to <%= advisory.patched_versions.join(', ') %>
+          <% else %>
+            remove or disable this gem until a patch is available!
+          <% end %>
+          </div>
+        </div>
+      </div>
     <% end %>
-    </li>
-  <% end %>
-  </ul>
+  </div>
 <% end %>
