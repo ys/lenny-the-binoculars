@@ -17,6 +17,9 @@
     },
     "APP_URL": {
       "Description": "Base url for the app used for target_url in commit statuses"
+    },
+    "REPOSITORIES": {
+      "Description": "Comma separated list of repositories"
     }
   }
 }
