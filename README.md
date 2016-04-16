@@ -4,6 +4,12 @@ Check your project gemfiles for vulnerable gems.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
+## How-to?
+
+- Deploy to Heroku
+- Config wanted `ENV["REPOSITORIES"]`
+- Send pull-request webhooks to `"#{ENV["APP_URL"]}/webhooks"`
+
 ## Config vars
 
 - `GITHUB_API_TOKEN` Reads the `Gemfile.lock` and create the statuses
