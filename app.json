@@ -4,22 +4,26 @@
   "addons": ["heroku-postgresql", "heroku-redis"],
   "env": {
     "GITHUB_API_TOKEN": {
-      "Description": "Access token to get gemfile.lock and push commit statuses"
+      "description": "Access token to get gemfile.lock and push commit statuses"
     },
     "GITHUB_KEY": {
-      "Description": "Oauth key to protect acces"
+      "description": "Oauth key to protect acces"
     },
     "GITHUB_SECRET": {
-      "Description": "Oauth secret to protect acces"
+      "description": "Oauth secret to protect acces"
     },
     "GITHUB_ORG": {
-      "Description": "Org name user needs to be on"
+      "description": "Org name user needs to be on"
     },
     "APP_URL": {
-      "Description": "Base url for the app used for target_url in commit statuses"
+      "description": "Base url for the app used for target_url in commit statuses"
     },
     "REPOSITORIES": {
-      "Description": "Comma separated list of repositories"
+      "description": "Comma separated list of repositories"
+    },
+    "SECRET_KEY_BASE": {
+      "description": "Rails session secret base",
+      "generator": "secret"
     }
   }
 }
