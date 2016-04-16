@@ -18,6 +18,18 @@ Check your project gemfiles for vulnerable gems.
 - `APP_URL` Used to generate the `target_url` in commit statuses
 - `REPOSITORIES` Limit checking to only those repositories
 
+## Setup
+
+```
+$ bin/setup
+```
+
+## Test
+
+```
+$ bin/cibuild
+```
+
 ## Screenshots
 
 ### Index
@@ -32,8 +44,3 @@ Check your project gemfiles for vulnerable gems.
 
 ![](https://dl.dropbox.com/s/yet2457vg561j8s/LennyTheBinoculars_2016-04-16_12-06-14.png?dl=0)
 
-## Test
-
-```
-$ bin/cibuild
-```
