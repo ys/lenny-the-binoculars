@@ -14,6 +14,10 @@ Check your project gemfiles for vulnerable gems.
 
 ## Screenshots
 
+### Index
+
+![](https://dl.dropbox.com/s/md9futx11f37t4f/LennyTheBinoculars_2016-04-16_12-37-59.png?dl=0)
+
 ### Commit status
 
 ![](https://dl.dropbox.com/s/t6yrzk266fansqf/Oops_wrong_stuff_by_ys__Pull_Request_2__yslenny-the-binoculars_2016-04-16_12-05-53.png?dl=0)

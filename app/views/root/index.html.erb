@@ -1,0 +1,20 @@
+<h1 class="repo">Lenny the binoculars</h1>
+<div class="gem">
+  <header>
+    <h5>Config</h5>
+  </header>
+  <div class="row">
+    <div class="def column column-10">Organization</div>
+    <div class="column"><%= ENV["GITHUB_ORG"] %></div>
+  </div>
+  <div class="row">
+    <div class="def column column-10">Repositories</div>
+    <div class="column">
+      <ul>
+      <% ENV["REPOSITORIES"].split(",").each do |repo| %>
+        <li><%= repo %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
