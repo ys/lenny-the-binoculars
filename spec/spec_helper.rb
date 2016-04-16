@@ -19,6 +19,10 @@ RSpec.configure do |config|
     File.read(fixtures_path(path))
   end
 
+  def fixture_json(path)
+    JSON.parse(fixture_data(path))
+  end
+
   def default_json_headers
     { "Content-Type" => "application/json" }
   end
@@ -26,5 +30,14 @@ RSpec.configure do |config|
   def stub_json_request(method, url, response_body, status = 200)
     stub_request(method, url)
       .to_return(status: status, body: response_body, headers: default_json_headers)
+  end
+
+  def stub_github(method, path, response_body, status = 200)
+    stub_request(method, "https://api.github.com#{path}")
+    .with(:headers => {
+      'Accept'=>'application/vnd.github.v3+json',
+      'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+      'Content-Type'=>'application/json', 'User-Agent'=>'Octokit Ruby Gem 4.3.0'
+    }).to_return(:status => status, :body => response_body, :headers => { "Content-Type" => "application/json" })
   end
 end
