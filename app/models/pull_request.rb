@@ -1,6 +1,7 @@
 require "base64"
 require "tmpdir"
 
+# Pull request object
 class PullRequest < ApplicationRecord
   def self.find_or_create_from_webhook(payload)
     number = payload["number"]
@@ -16,11 +17,11 @@ class PullRequest < ApplicationRecord
     github.create_status(repository, sha, state,
                          context: "lenny/vulnerabilities",
                          description: description,
-                         target_url: "#{ENV["APP_URL"]}/pull_requests/#{id}")
+                         target_url: "#{ENV['APP_URL']}/pull_requests/#{id}")
   end
 
   def check_lockfile!
-    raise(StandardError, "No Gemfile.lock found") unless has_gemfile?
+    raise(StandardError, "No Gemfile.lock found") unless gemfile?
     Bundler::Audit::Database.update!
     write_gemfile_in_local_folder
     lockfile = Lockfile.new(local_folder)
@@ -34,7 +35,7 @@ class PullRequest < ApplicationRecord
     end
   end
 
-  def has_gemfile?
+  def gemfile?
     gemfile_lock
     true
   rescue Octokit::NotFound
@@ -52,11 +53,11 @@ class PullRequest < ApplicationRecord
     end
   end
 
-	def github_file(file)
-		github.contents(repository, :ref => sha, :path => file)["content"]
-	end
+  def github_file(file)
+    github.contents(repository, ref: sha, path: file)["content"]
+  end
 
   def github
-    Octokit::Client.new(:access_token => ENV["GITHUB_API_TOKEN"])
+    Octokit::Client.new(access_token: ENV["GITHUB_API_TOKEN"])
   end
 end

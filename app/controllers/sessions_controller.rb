@@ -1,8 +1,9 @@
+# Oauth callbacks
 class SessionsController < ApplicationController
   skip_before_action :authenticated
 
   def github
-    client = Octokit::Client.new(:access_token => auth_hash["credentials"]["token"])
+    client = Octokit::Client.new(access_token: auth_hash["credentials"]["token"])
     if client.org_member?(ENV["GITHUB_ORG"], client.user.login)
       session[:authenticated] = true
     else

@@ -22,6 +22,7 @@ group :development, :test do
   gem "byebug"
   gem "rspec-rails"
   gem "dotenv-rails"
+  gem "rubocop"
 end
 
 group :test do

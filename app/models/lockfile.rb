@@ -1,5 +1,6 @@
 require "bundler/audit/scanner"
 
+# Gemfile.lock model
 class Lockfile
   attr_accessor :unpatched_gems, :insecure_sources
 
@@ -15,7 +16,7 @@ class Lockfile
 
   def description
     if vulnerable?
-    "#{insecure_sources_count} insecure sources, #{unpatched_gems_count} unpatched Gems"
+      "#{insecure_sources_count} insecure sources, #{unpatched_gems_count} unpatched Gems"
     else
       "No vulnerabilities found"
     end

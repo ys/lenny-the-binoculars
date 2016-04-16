@@ -1,13 +1,18 @@
 require "json"
 
+# Pull request handler to create the object and the commit status
 class PullRequestJob < ActiveJob::Base
-  def perform(secret, pull_request_body)
+  def perform(_secret, pull_request_body)
     payload = JSON.parse(pull_request_body)
     return unless %w{opened synchronize}.include?(payload["action"])
     unless repositories.include?(payload["repository"]["full_name"])
-      Rails.logger.info"#{payload["repository"]["full_name"]} is not in #{repositories}"
+      Rails.logger.info"#{payload['repository']['full_name']} is not in #{repositories}"
       return
     end
+    create_status(payload)
+  end
+
+  def create_status(payload)
     pr = PullRequest.find_or_create_from_webhook(payload)
     pr.sha = payload["pull_request"]["head"]["sha"]
     pr.save

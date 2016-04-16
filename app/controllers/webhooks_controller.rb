@@ -1,3 +1,4 @@
+# GitHub webhooks receiver
 class WebhooksController < ApplicationController
   before_action :verify_incoming_webhook_address!
   skip_before_action :verify_authenticity_token
