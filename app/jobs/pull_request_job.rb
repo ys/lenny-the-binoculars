@@ -5,10 +5,7 @@ class PullRequestJob < ActiveJob::Base
   def perform(_secret, pull_request_body)
     payload = JSON.parse(pull_request_body)
     return unless %w{opened synchronize}.include?(payload["action"])
-    unless repositories.include?(payload["repository"]["full_name"])
-      Rails.logger.info"#{payload['repository']['full_name']} is not in #{repositories}"
-      return
-    end
+    return unless repositories.include?(payload["repository"]["full_name"])
     create_status(payload)
   end
 
