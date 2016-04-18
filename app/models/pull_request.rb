@@ -28,10 +28,8 @@ class PullRequest < ApplicationRecord
     lockfile
   end
 
-  def write_gemfile_in_local_folder
-    File.open(File.join(local_folder, "Gemfile.lock"), "w") do |f|
-      f.write gemfile_lock
-    end
+  def name
+    "#{repository}##{number}"
   end
 
   def gemfile?
@@ -41,15 +39,23 @@ class PullRequest < ApplicationRecord
     false
   end
 
-  def local_folder
-    @local_folder ||= Dir.tmpdir
-  end
-
   def gemfile_lock
     @content ||= begin
       encoded_content = github_file("Gemfile.lock")
       Base64.decode64(encoded_content)
     end
+  end
+
+  private
+
+  def write_gemfile_in_local_folder
+    File.open(File.join(local_folder, "Gemfile.lock"), "w") do |f|
+      f.write gemfile_lock
+    end
+  end
+
+  def local_folder
+    @local_folder ||= Dir.tmpdir
   end
 
   def github_file(file)

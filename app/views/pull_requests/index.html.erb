@@ -1,0 +1,13 @@
+<h1 class="header">Pull Requests</h1>
+<table>
+  <tbody>
+    <% @pull_requests.each do |pr| %>
+      <tr>
+        <td>
+          <%= link_to pr.name, pull_request_path(pr) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @pull_requests %>
