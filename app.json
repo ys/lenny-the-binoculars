@@ -21,6 +21,9 @@
     "REPOSITORIES": {
       "description": "Comma separated list of repositories"
     },
+    "ROLLBAR_ACCESS_TOKEN": {
+      "description": "Token to report errors"
+    },
     "SECRET_KEY_BASE": {
       "description": "Rails session secret base",
       "generator": "secret"
