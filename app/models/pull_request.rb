@@ -28,6 +28,12 @@ class PullRequest < ApplicationRecord
     lockfile
   end
 
+  def name
+    "#{repository}##{number}"
+  end
+
+  private
+
   def write_gemfile_in_local_folder
     File.open(File.join(local_folder, "Gemfile.lock"), "w") do |f|
       f.write gemfile_lock

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # mount ActionCable.server => '/cable'
   #
   resources :webhooks, only: :create
-  resources :pull_requests, only: :show
+  resources :pull_requests, only: %w{index show}
   get "/auth/github/callback", to: "sessions#github"
   root to: "root#index"
 end

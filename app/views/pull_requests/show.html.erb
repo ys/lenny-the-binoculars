@@ -1,4 +1,4 @@
-<h1 class="repo"><%= @pr.repository %><a href="https://github.com/<%= @pr.repository %>/pull/<%= @pr.number %>">#<%= @pr.number %></a></h1>
+<h1 class="header"><%= @pr.repository %><a href="https://github.com/<%= @pr.repository %>/pull/<%= @pr.number %>">#<%= @pr.number %></a></h1>
 <% if @lockfile.insecure_sources.any? %>
   <h4>Insecure Sources</h4>
   <ul>
@@ -16,7 +16,7 @@
     <% @lockfile.unpatched_gems.each do |g| %>
       <% gem = g.gem %>
       <% advisory = g.advisory %>
-      <div class="gem">
+      <div class="block">
         <header>
           <h5><%= gem.name %>#<%= gem.version %></h5>
         </header>

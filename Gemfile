@@ -2,21 +2,19 @@ source "https://rubygems.org"
 
 ruby "2.3.0"
 
-gem "rails", ">= 5.0.0.beta3", "< 5.1"
+gem "bundler-audit"
+gem "coffee-rails", "~> 4.1.0"
+gem "jquery-rails"
+gem "kaminari"
+gem "lograge"
+gem "octokit"
+gem "omniauth-github"
 gem "pg", "~> 0.18"
 gem "puma"
+gem "rails", ">= 5.0.0.beta3", "< 5.1"
 gem "sass-rails", "~> 5.0"
-gem "uglifier", ">= 1.3.0"
-gem "coffee-rails", "~> 4.1.0"
-
-gem "jquery-rails"
-
-gem "bundler-audit"
 gem "sidekiq"
-gem "octokit"
-gem "lograge"
-
-gem "omniauth-github"
+gem "uglifier", ">= 1.3.0"
 
 group :development, :test do
   gem "byebug"
