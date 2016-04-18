@@ -32,6 +32,20 @@ class PullRequest < ApplicationRecord
     "#{repository}##{number}"
   end
 
+  def gemfile?
+    gemfile_lock
+    true
+  rescue Octokit::NotFound
+    false
+  end
+
+  def gemfile_lock
+    @content ||= begin
+      encoded_content = github_file("Gemfile.lock")
+      Base64.decode64(encoded_content)
+    end
+  end
+
   private
 
   def write_gemfile_in_local_folder
@@ -40,22 +54,8 @@ class PullRequest < ApplicationRecord
     end
   end
 
-  def gemfile?
-    gemfile_lock
-    true
-  rescue Octokit::NotFound
-    false
-  end
-
   def local_folder
     @local_folder ||= Dir.tmpdir
-  end
-
-  def gemfile_lock
-    @content ||= begin
-      encoded_content = github_file("Gemfile.lock")
-      Base64.decode64(encoded_content)
-    end
   end
 
   def github_file(file)
