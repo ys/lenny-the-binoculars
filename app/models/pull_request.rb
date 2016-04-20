@@ -15,7 +15,7 @@ class PullRequest < ApplicationRecord
 
   def create_status(state, description)
     github.create_status(repository, sha, state,
-                         context: "lenny/vulnerabilities",
+                         context: "vulnerabilities/gems",
                          description: description,
                          target_url: "#{ENV['APP_URL']}/pull_requests/#{id}")
   end
