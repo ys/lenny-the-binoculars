@@ -14,6 +14,12 @@
       <% @repos.split(",").each do |repo| %>
         <li><%= repo %></li>
       <% end %>
+      <li>
+        <%= form_tag("/repos", method: "post") do %>
+          <%= text_field_tag(:repos) %>
+          <%= submit_tag("+") %>
+        <% end %>
+      </li>
       </ul>
     </div>
   </div>
