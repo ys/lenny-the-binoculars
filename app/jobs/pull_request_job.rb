@@ -5,7 +5,7 @@ class PullRequestJob < ActiveJob::Base
   def perform(_secret, pull_request_body)
     payload = JSON.parse(pull_request_body)
     return unless %w{opened synchronize}.include?(payload["action"])
-    return unless repositories.include?(payload["repository"]["full_name"])
+    return unless watch_repo?(payload["repository"]["full_name"])
     create_status(payload)
   end
 
@@ -17,7 +17,7 @@ class PullRequestJob < ActiveJob::Base
     pr.create_status(lockfile.state, lockfile.description)
   end
 
-  def repositories
-    ENV["REPOSITORIES"].split(",")
+  def watch_repo?(repo)
+    REDIS.sismember(REPOSITORIES_KEY, repo)
   end
 end

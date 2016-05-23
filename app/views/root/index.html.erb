@@ -11,7 +11,7 @@
     <div class="def column column-10">Repositories</div>
     <div class="column">
       <ul>
-      <% ENV["REPOSITORIES"].split(",").each do |repo| %>
+      <% @repos.split(",").each do |repo| %>
         <li><%= repo %></li>
       <% end %>
       </ul>
