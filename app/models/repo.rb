@@ -1,4 +1,6 @@
 class Repo
+  REPOSITORIES_KEY = "#{Rails.env}.lenny.repositories".freeze
+
   def self.add_all(repos = [])
     repos = trim_repos_without_access(repos)
     REDIS.sadd(REPOSITORIES_KEY, repos)
