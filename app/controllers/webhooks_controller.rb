@@ -8,11 +8,11 @@ class WebhooksController < ApplicationController
     case event_type
     when "pull_request"
       handle_pull_request
-      render :json => {}, :status => :accepted
+      render json: {}, status: :accepted
     when "ping"
-      render :json => {}, :status => :ok
+      render json: {}, status: :ok
     else
-      render :json => { error: "Non supported event type" }, :status => :unprocessable_entity
+      render json: { error: "Non supported event type" }, status: :unprocessable_entity
     end
   end
 
@@ -38,7 +38,7 @@ class WebhooksController < ApplicationController
     if source_ips.any? { |block| IPAddr.new(block).include?(request.ip) }
       true
     else
-      render :json => {}, :status => :forbidden
+      render json: {}, status: :forbidden
     end
   end
 end

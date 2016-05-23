@@ -1,16 +1,16 @@
 require "rails_helper"
 
-describe "Receiving GitHub hooks", :type => :request do
+describe "Receiving GitHub hooks", type: :request do
   def request_headers(event = "ping", remote_ip = "192.30.252.41")
     uuid = SecureRandom.uuid
     {
-      :headers => {
+      headers: {
         "REMOTE_ADDR": remote_ip,
         "X_FORWARDED_FOR": remote_ip,
         "X-Github-Event": event,
         "X-Github-Delivery": uuid
       },
-      :as => :json
+      as: :json
     }
   end
 

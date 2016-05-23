@@ -19,7 +19,7 @@ StringLiterals:
 
 HashSyntax:
   EnforcedStyle: ruby19
-  UseHashRocketsWithSymbolValues: true
+  UseHashRocketsWithSymbolValues: false
   Severity: error
   Exclude:
     - !ruby/regexp /db\/schema.rb/
