@@ -23,7 +23,7 @@ class Repo
     if REDIS.exists(REPOSITORIES_KEY)
       REDIS.smembers(REPOSITORIES_KEY)
     else
-      ENV["REPOSITORIES"].split(",") || []
+      ENV.fetch("REPOSITORIES", "").split(",")
     end
   end
 
