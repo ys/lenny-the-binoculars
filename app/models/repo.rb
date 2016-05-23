@@ -13,7 +13,11 @@ class Repo
   end
 
   def self.all
-    REDIS.smembers(REPOSITORIES_KEY)
+    if REDIS.exists(REPOSITORIES_KEY)
+      REDIS.smembers(REPOSITORIES_KEY)
+    else
+      ENV["REPOSITORIES"].split(",")
+    end
   end
 
   def self.watched?(repo)
