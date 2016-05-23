@@ -11,9 +11,15 @@
     <div class="def column column-10">Repositories</div>
     <div class="column">
       <ul>
-      <% ENV["REPOSITORIES"].split(",").each do |repo| %>
+      <% @repos.each do |repo| %>
         <li><%= repo %></li>
       <% end %>
+      <li>
+        <%= form_tag("/repos", method: "post") do %>
+          <%= text_field_tag(:repos) %>
+          <%= submit_tag("+") %>
+        <% end %>
+      </li>
       </ul>
     </div>
   </div>

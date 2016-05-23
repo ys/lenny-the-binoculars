@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "/:owner/:name", to: "repos#show"
   resources :webhooks, only: :create
   resources :pull_requests, only: %w{index show}
+  resources :repos, only: %w{create}
   get "/auth/github/callback", to: "sessions#github"
   root to: "root#index"
 end

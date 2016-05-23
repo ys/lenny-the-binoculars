@@ -5,11 +5,20 @@ class ReposController < ApplicationController
     @lockfile = @repo.check_lockfile!
   end
 
+  def create
+    Repo.add_all(repos)
+    redirect_to "/"
+  end
+
   def repo_name
     "#{params[:owner]}/#{params[:name]}"
   end
 
   def branch
     params[:branch] || "master"
+  end
+
+  def repos
+    params[:repos].split(",").map(&:strip)
   end
 end

@@ -1,6 +1,6 @@
 services:
   - postgresql
-  - redis
+  - redis-server
 language: ruby
 cache: bundler
 rvm:
