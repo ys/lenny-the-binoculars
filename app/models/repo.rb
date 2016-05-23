@@ -11,7 +11,7 @@ class Repo
   end
 
   def self.trim_repos_without_access(repos)
-    repos.select { |repo| GITHUB.repo?(repo) }
+    repos.select { |repo| GITHUB.repository?(repo) }
   end
 
   def self.all
