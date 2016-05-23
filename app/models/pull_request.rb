@@ -3,6 +3,7 @@ require "tmpdir"
 
 # Pull request object
 class PullRequest < ApplicationRecord
+  delegate :check_lockfile!, :gemfile_lock, to: :repo
   def self.find_or_create_from_webhook(payload)
     number = payload["number"]
     repository = payload["repository"]["full_name"]
@@ -18,14 +19,6 @@ class PullRequest < ApplicationRecord
                          context: "vulnerabilities/gems",
                          description: description,
                          target_url: "#{ENV['APP_URL']}/pull_requests/#{id}")
-  end
-
-  def check_lockfile!
-    repo.check_lockfile!
-  end
-
-  def gemfile_lock
-    repo.gemfile_lock
   end
 
   def repo

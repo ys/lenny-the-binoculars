@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if client.org_member?(ENV["GITHUB_ORG"], client.user.login)
       session[:authenticated] = true
     else
-      return render :json => { error: "Not a member of the correct org, sorry" }, :status => :forbidden
+      return render json: { error: "Not a member of the correct org, sorry" }, status: :forbidden
     end
     redirect_to env["omniauth.params"]["origin"] || "/"
   end

@@ -1,3 +1,4 @@
+# Controller showing one repo branch lockfile
 class ReposController < ApplicationController
   def show
     @repo = Repo.new(name_with_owner: repo_name, sha: branch)
@@ -5,7 +6,7 @@ class ReposController < ApplicationController
   end
 
   def repo_name
-   "#{params[:owner]}/#{params[:name]}"
+    "#{params[:owner]}/#{params[:name]}"
   end
 
   def branch

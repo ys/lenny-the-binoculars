@@ -1,3 +1,4 @@
+# Represent a repository with a branch
 class Repo
   include ActiveModel::Model
 
