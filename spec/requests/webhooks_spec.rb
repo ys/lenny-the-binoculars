@@ -39,7 +39,7 @@ describe "Receiving GitHub hooks", :type => :request do
 
     describe "Pull Request events" do
       it "creates a pull request object on open event" do
-        REDIS.sadd(REPOSITORIES_KEY, "ys/lenny-the-binoculars")
+        Repo.add("ys/lenny-the-binoculars")
         stub_github(:get,
                     "/repos/ys/lenny-the-binoculars/contents/Gemfile.lock?ref=ddd3c786004a813aef53caf5661c5fba5f30ebed",
                     fixture_data("github/gemfile_lock"))
@@ -51,7 +51,7 @@ describe "Receiving GitHub hooks", :type => :request do
       end
 
       it "does not create a pull request object if repo is not participating" do
-        REDIS.sadd(REPOSITORIES_KEY, "lol/sob")
+        Repo.add("lol/sob")
         post "/webhooks", { params: fixture_json("github/pull_request_open") }.merge(request_headers("pull_request"))
         expect(PullRequest.last).to be_nil
         expect(response).to be_successful

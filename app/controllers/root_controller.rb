@@ -1,6 +1,6 @@
 # Root route controller
 class RootController < ApplicationController
   def index
-    @repos = REDIS.smembers(REPOSITORIES_KEY)
+    @repos = Repo.all
   end
 end

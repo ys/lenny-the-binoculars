@@ -18,6 +18,6 @@ class PullRequestJob < ActiveJob::Base
   end
 
   def watch_repo?(repo)
-    REDIS.sismember(REPOSITORIES_KEY, repo)
+    Repo.watched?(repo)
   end
 end
