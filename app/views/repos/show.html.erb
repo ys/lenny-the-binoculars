@@ -1,4 +1,6 @@
-<h1 class="header"><a href="https://github.com/<%= @repo.name_with_owner %>"><%= @repo.name_with_owner %></a></h1>
+<header class="header">
+  <h1><a href="https://github.com/<%= @repo.name_with_owner %>"><%= @repo.name_with_owner %></a></h1><small><%= @repo.sha %></small>
+</header>
 <% if @lockfile.insecure_sources.any? %>
   <h4>Insecure Sources</h4>
   <ul>
