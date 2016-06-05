@@ -45,18 +45,18 @@ class Lockfile
     @insecure_sources.any? || @unpatched_gems.any?
   end
 
-  def to_json
+  def to_h
     {
-      unpatched_gems: gems_to_json,
-      insecure_sources: sources_to_json
-    }.to_json
+      unpatched_gems: gems_to_h,
+      insecure_sources: sources_to_h
+    }
   end
 
-  def sources_to_json
+  def sources_to_h
     insecure_sources.map(&:source)
   end
 
-  def gems_to_json
+  def gems_to_h
     unpatched_gems.map do |gem|
       {
         name: gem.gem.name,
