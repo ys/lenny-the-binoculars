@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :webhooks, only: :create
   resources :pull_requests, only: %w{index show}
   resources :repos, only: %w{create}
+  resources :tokens, only: %w{index create}
   get "/auth/github/callback", to: "sessions#github"
   root to: "root#index"
 end
