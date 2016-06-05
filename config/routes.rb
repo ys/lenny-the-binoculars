@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # mount ActionCable.server => '/cable'
   #
   get "/:owner/:name", to: "repos#show"
+  get "/api/:owner/:name", to: "api/repos#show"
   resources :webhooks, only: :create
   resources :pull_requests, only: %w{index show}
   resources :repos, only: %w{create}

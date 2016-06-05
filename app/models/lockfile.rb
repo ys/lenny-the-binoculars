@@ -44,4 +44,35 @@ class Lockfile
   def vulnerable?
     @insecure_sources.any? || @unpatched_gems.any?
   end
+
+  def to_json
+    {
+      unpatched_gems: gems_to_json,
+      insecure_sources: sources_to_json
+    }.to_json
+  end
+
+  def sources_to_json
+    insecure_sources.map(&:source)
+  end
+
+  def gems_to_json
+    unpatched_gems.map do |gem|
+      {
+        name: gem.gem.name,
+        version: gem.gem.version.to_s,
+        cve: gem.advisory.cve,
+        osvdb: gem.advisory.osvdb,
+        criticality: gem.advisory.criticality,
+        advisory_url: gem.advisory.url,
+        patched_version: versions_to_json(gem.advisory.patched_versions) || []
+      }
+    end
+  end
+
+  def versions_to_json(versions)
+    versions.map do |v|
+      "#{v.requirements.first.first} #{v.requirements.first.last.version}"
+    end
+  end
 end
