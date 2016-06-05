@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   #
   get "/:owner/:name", to: "repos#show"
   get "/api/:owner/:name", to: "api/repos#show"
+  get "/api", to: "api/base#root"
   resources :webhooks, only: :create
   resources :pull_requests, only: %w{index show}
   resources :repos, only: %w{create}
