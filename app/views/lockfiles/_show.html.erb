@@ -1,17 +1,19 @@
-<% if @lockfile.insecure_sources.any? %>
-  <h4>Insecure Sources</h4>
-  <ul>
-  <% @lockfile.insecure_sources.each do |insecure_source| %>
-    <li><%= insecure_source.source %></li>
-  <% end %>
-  </ul>
+<% if @lockfile.insecure_sources.empty? && @lockfile.unpatched_gems.empty? %>
+  <div class="valid"></div>
 <% end %>
-
-<h4>Unpatched Gems</h4>
-<% if @lockfile.unpatched_gems.empty? %>
-  No unpatched gems
-<% else %>
+<% if @lockfile.insecure_sources.any? %>
+  <div class="sources">
+    <h4>Insecure Sources</h4>
+    <% @lockfile.insecure_sources.each do |insecure_source| %>
+      <div class="block">
+        <%= insecure_source.source %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+<% if @lockfile.unpatched_gems.any? %>
   <div class="gems">
+    <h4>Unpatched Gems</h4>
     <% @lockfile.unpatched_gems.each do |g| %>
       <% gem = g.gem %>
       <% advisory = g.advisory %>
@@ -44,8 +46,8 @@
         <div class="row">
           <div class="def column column-10">Solution</div>
           <div class="column">
-              <% unless advisory.patched_versions.empty? %>
-            Upgrade to <%= advisory.patched_versions.join(', ') %>
+            <% unless advisory.patched_versions.empty? %>
+              Upgrade to <%= advisory.patched_versions.join(', ') %>
           <% else %>
             remove or disable this gem until a patch is available!
           <% end %>

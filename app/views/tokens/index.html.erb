@@ -1,0 +1,19 @@
+<div class="block">
+  <header>
+    <h5>Api Tokens</h5>
+  </header>
+  <div class="row">
+    <div class="column">
+      <ul>
+      <% @tokens.each do |token| %>
+        <li><%= token %></li>
+      <% end %>
+      <li>
+        <%= form_tag("/tokens", method: "post") do %>
+          <%= submit_tag("Add api token") %>
+        <% end %>
+      </li>
+      </ul>
+    </div>
+  </div>
+</div>
