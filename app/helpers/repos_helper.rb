@@ -1,3 +1,4 @@
+# Helper for managing params for repo
 module ReposHelper
   def repo
     Repo.new(name_with_owner: repo_name, sha: branch)

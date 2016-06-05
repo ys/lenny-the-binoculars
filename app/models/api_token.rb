@@ -1,3 +1,4 @@
+# Api token stored in Redis
 class ApiToken
   include ActiveModel::Model
   attr_accessor :raw_token

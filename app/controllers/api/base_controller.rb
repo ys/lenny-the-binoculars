@@ -1,3 +1,4 @@
+# Base api controller handling the auth
 class Api::BaseController < ApplicationController
   skip_before_action :authenticated
   before_action :api_authenticated

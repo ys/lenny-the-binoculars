@@ -1,3 +1,4 @@
+# Api tokens controller
 class TokensController < ApplicationController
   def index
     @tokens = ApiToken.all

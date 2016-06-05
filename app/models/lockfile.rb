@@ -58,16 +58,22 @@ class Lockfile
 
   def gems_to_h
     unpatched_gems.map do |gem|
-      {
-        name: gem.gem.name,
-        version: gem.gem.version.to_s,
-        cve: gem.advisory.cve,
-        osvdb: gem.advisory.osvdb,
-        criticality: gem.advisory.criticality,
-        advisory_url: gem.advisory.url,
-        patched_version: versions_to_json(gem.advisory.patched_versions) || []
-      }
+      gem_to_h(gem)
     end
+  end
+
+  def gem_to_h(gem)
+    gem = gem.gem
+    advisory = gem.advisory
+    {
+      name: gem.name,
+      version: gem.version.to_s,
+      cve: advisory.cve,
+      osvdb: advisory.osvdb,
+      criticality: advisory.criticality,
+      advisory_url: advisory.url,
+      patched_version: versions_to_json(advisory.patched_versions) || []
+    }
   end
 
   def versions_to_json(versions)

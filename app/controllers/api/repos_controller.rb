@@ -1,3 +1,4 @@
+# Repos in json
 class Api::ReposController < Api::BaseController
   def show
     lockfile = repo.check_lockfile!
