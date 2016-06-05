@@ -1,26 +1,28 @@
-<h1 class="header">Lenny the binoculars</h1>
+<header>
+  <h5>Config</h5>
+</header>
 <div class="block">
-  <header>
-    <h5>Config</h5>
-  </header>
   <div class="row">
     <div class="def column column-10">Organization</div>
     <div class="column"><%= ENV["GITHUB_ORG"] %></div>
   </div>
+</div>
+<div class="block">
   <div class="row">
     <div class="def column column-10">Repositories</div>
     <div class="column">
       <ul>
       <% @repos.each do |repo| %>
-        <li><%= repo %></li>
+        <li><%= link_to repo, "/#{repo}" %></li>
       <% end %>
-      <li>
-        <%= form_tag("/repos", method: "post") do %>
-          <%= text_field_tag(:repos) %>
-          <%= submit_tag("+") %>
-        <% end %>
-      </li>
       </ul>
+      <%= form_tag("/repos", method: "post") do %>
+        <fieldset>
+          <label for="repos">Repositories</label>
+          <%= text_field_tag(:repos, nil, placeholder: "owner/repo_name, owner/repo_name2") %>
+          <%= submit_tag("Add Repositories") %>
+        </fieldset>
+      <% end %>
     </div>
   </div>
 </div>
