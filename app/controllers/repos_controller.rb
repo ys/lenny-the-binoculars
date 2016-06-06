@@ -2,7 +2,7 @@
 class ReposController < ApplicationController
   def show
     @repo = repo
-    @lockfile = @repo.check_lockfile!
+    @lockfile = @repo.gemfile? ? @repo.check_lockfile! : nil
   end
 
   def create

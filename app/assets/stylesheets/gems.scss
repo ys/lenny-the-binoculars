@@ -75,3 +75,21 @@ header.main {
   height: 500px;
   -webkit-mask-size: contain;
 }
+
+.invalid {
+  margin-top: 30px;
+  background-color: rgba(214,66,66, 0.7);
+  mask: image-url("invalid.svg") no-repeat;
+  -webkit-mask: image-url("invalid.svg") no-repeat;
+  mask-position: top;
+  -webkit-mask-position: top;
+  mask-size: contain;
+  height: 500px;
+  -webkit-mask-size: contain;
+}
+.no-gemfile {
+  margin-top: 30px;
+  color: rgba(214,66,66, 0.7);
+  font-size: 40px;
+  text-align: center;
+}
