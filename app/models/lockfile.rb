@@ -63,8 +63,8 @@ class Lockfile
   end
 
   def gem_to_h(gem)
-    gem = gem.gem
     advisory = gem.advisory
+    gem = gem.gem
     {
       name: gem.name,
       version: gem.version.to_s,
