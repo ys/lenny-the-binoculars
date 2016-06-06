@@ -11,18 +11,26 @@
   <div class="row">
     <div class="def column column-10">Repositories</div>
     <div class="column">
-      <ul>
-      <% @repos.each do |repo| %>
-        <li><%= link_to repo, "/#{repo}" %></li>
-      <% end %>
-      </ul>
-      <%= form_tag("/repos", method: "post") do %>
-        <fieldset>
-          <label for="repos">Repositories</label>
-          <%= text_field_tag(:repos, nil, placeholder: "owner/repo_name, owner/repo_name2") %>
-          <%= submit_tag("Add Repositories") %>
-        </fieldset>
-      <% end %>
+      <table>
+        <tbody>
+          <% @repos.each do |repo| %>
+            <tr>
+              <td><%= link_to repo, "/#{repo}" %></td>
+              <td>
+                <%= form_tag("/#{repo}", method: "delete", class: "delete float-right") do %>
+                  <%= submit_tag("Remove", class: "button button-outline") %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          <%= form_tag("/repos", method: "post") do %>
+            <tr><td>
+                <%= text_field_tag(:repos, nil, placeholder: "owner/repo_name, owner/repo_name2") %></td><td>
+                <%= submit_tag("Add Repositories", class: "float-right") %>
+            </td></tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

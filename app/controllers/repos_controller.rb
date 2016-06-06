@@ -9,4 +9,9 @@ class ReposController < ApplicationController
     Repo.add_all(repos)
     redirect_to "/"
   end
+
+  def destroy
+    Repo.remove(repo_name)
+    redirect_to "/"
+  end
 end

@@ -15,6 +15,10 @@ class Repo
     REDIS.sadd(REPOSITORIES_KEY, repo)
   end
 
+  def self.remove(repo)
+    REDIS.srem(REPOSITORIES_KEY, repo)
+  end
+
   def self.trim_repos_without_access(repos)
     repos.select { |repo| GITHUB.repository?(repo) }
   end
