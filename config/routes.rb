@@ -4,14 +4,14 @@ Rails.application.routes.draw do
   # Serve websocket cable requests in-process
   # mount ActionCable.server => '/cable'
   #
-  get "/:owner/:name", to: "repos#show"
-  delete "/:owner/:name", to: "repos#destroy"
-  get "/api/:owner/:name", to: "api/repos#show"
-  get "/api", to: "api/base#root"
   resources :webhooks, only: :create
   resources :pull_requests, only: %w{index show}
   resources :repos, only: %w{create destroy}
   resources :tokens, only: %w{index create}
+  get "/:owner/:name", to: "repos#show"
+  delete "/:owner/:name", to: "repos#destroy"
+  get "/api/:owner/:name", to: "api/repos#show"
+  get "/api", to: "api/base#root"
   get "/auth/github/callback", to: "sessions#github"
   root to: "root#index"
 end
