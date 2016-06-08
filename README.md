@@ -1,6 +1,6 @@
 # Lenny the binoculars
 
-Check your project gemfiles for vulnerable gems.
+Check your project gemfiles for vulnerable gems. Using `bundler-audit`
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
